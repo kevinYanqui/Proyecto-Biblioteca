@@ -8,7 +8,6 @@ import java.time.LocalDate;
 @Table(name = "devolucion")
 public class Devolucion {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "codigo_pre", nullable = false, length = 6)
     private Long codigoPre;
 
@@ -18,7 +17,7 @@ public class Devolucion {
     private Prestamo prestamo;
 
     @Column(name = "codigo_dev", nullable = false, length = 6)
-    private String codigoDev;
+    private Long codigoDev;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_usu_emp", nullable = false)
@@ -43,11 +42,11 @@ public class Devolucion {
         this.prestamo = prestamo;
     }
 
-    public String getCodigoDev() {
+    public Long getCodigoDev() {
         return codigoDev;
     }
 
-    public void setCodigoDev(String codigoDev) {
+    public void setCodigoDev(Long codigoDev) {
         this.codigoDev = codigoDev;
     }
 

@@ -25,9 +25,9 @@ public class AutoresController {
         return "fAutores";
     }
 
-    @GetMapping("/cambiarEstado")
-    public String cambiarEstado(@RequestParam("id") String id, @RequestParam("estado") String estado) {
-        autoresService.cambiarEstado(id, estado);
+    @GetMapping("/cambiarEstadoAutor")
+    public String cambiarEstadoAutor(@RequestParam("id") String id, @RequestParam("estado") String estado) {
+        autoresService.cambiarEstadoAutor(id, estado);
         return "redirect:/autores";
     }
 
@@ -40,20 +40,20 @@ public class AutoresController {
 
     @PostMapping("/guardarNuevoAutor")
     public String guardarNuevoAutor(@ModelAttribute("autor") Autores autor) {
-        autoresService.actualizarAutor(autor);
+        autoresService.guardarAutor(autor);
         return "redirect:/autores";
     }
 
     @GetMapping("/editarAutor")
-    public String editarAutor(@RequestParam("id") String id, Model model) {
+    public String mostrarFormularioEditarAutor(@RequestParam("id") String id, Model model) {
         Autores autor = autoresService.obtenerAutorPorId(id);
         model.addAttribute("autor", autor);
         return "fEditarAutores";
     }
 
-    @PostMapping("/guardarAutor")
-    public String guardarAutor(@ModelAttribute("autor") Autores autor) {
-        autoresService.actualizarAutor(autor);
+    @PostMapping("/actualizarAutor")
+    public String actualizarAutor(@ModelAttribute("autor") Autores autor) {
+        autoresService.guardarAutor(autor);
         return "redirect:/autores";
     }
 }

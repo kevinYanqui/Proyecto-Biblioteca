@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class AutoresServiceImpl implements AutoresService {
+
     @Autowired
     private AutoresRepository autoresRepository;
 
@@ -17,18 +18,24 @@ public class AutoresServiceImpl implements AutoresService {
     public List<Autores> obtenerTodosLosAutores() {
         return autoresRepository.findAll();
     }
+
     @Override
-    public void cambiarEstado(String id, String estado) {
-        Autores autor = autoresRepository.findById(id).orElseThrow(() -> new RuntimeException("Autor no encontrado"));
+    public void cambiarEstadoAutor(String id, String estado) {
+        Autores autor = autoresRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Autor no encontrado"));
         autor.setEstadoAut(estado);
         autoresRepository.save(autor);
     }
+
     @Override
     public Autores obtenerAutorPorId(String id) {
-        return autoresRepository.findById(id).orElseThrow(() -> new RuntimeException("Autor no encontrado"));
+        return autoresRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Autor no encontrado"));
     }
+
     @Override
-    public void actualizarAutor(Autores autor) {
+    public void guardarAutor(Autores autor) {
         autoresRepository.save(autor);
     }
 }
+

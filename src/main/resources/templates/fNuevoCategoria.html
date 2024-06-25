@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteca - Nuevo Autor</title>
+    <title>Biblioteca - Nueva Categoría</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/offcanvas.css" rel="stylesheet">
     <link href="/css/cssUsuarios.css" rel="stylesheet">
@@ -47,34 +47,34 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
-            <form th:action="@{/guardarNuevoAutor}" th:object="${autor}" method="post">
+            <form th:action="@{/guardarNuevaCategoria}" th:object="${categoria}" method="post">
                 <div class="form-group">
-                    <label for="nombresAut">Nombres:</label>
-                    <input type="text" id="nombresAut" th:field="*{nombresAut}" class="form-control" required/>
+                    <label for="nombresGen">Nombres:</label>
+                    <input type="text" id="nombresGen" th:field="*{nombresGen}" class="form-control" required/>
                 </div>
                 <div class="form-group">
-                    <label for="apeAut">Apellidos:</label>
-                    <input type="text" id="apeAut" th:field="*{apeAut}" class="form-control"/>
+                    <label for="descripcionGen">Descripción:</label>
+                    <input type="text" id="descripcionGen" th:field="*{descripcionGen}" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label for="estadoAut">Estado:</label>
-                    <select id="estadoAut" th:field="*{estadoAut}" class="form-control">
+                    <label for="estadoCat">Estado:</label>
+                    <select id="estadoCat" th:field="*{estadoCat}" class="form-control">
                         <option value="Habilitado">Habilitado</option>
                         <option value="Inhabilitado">Inhabilitado</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
-            <a href="/autores" class="btn btn-secondary">Cancelar</a>
+            <a href="/categorias" class="btn btn-secondary">Cancelar</a>
         </div>
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
                 <a href="/inicio" class="list-group-item">Inicio</a>
                 <a href="/prestamosUsu" class="list-group-item">Préstamos</a>
                 <a href="/libros" class="list-group-item">Libros</a>
-                <a href="/autores" class="list-group-item active">Autores</a>
+                <a href="/autores" class="list-group-item">Autores</a>
                 <a href="/editores" class="list-group-item">Editores</a>
-                <a href="/categorias" class="list-group-item">Categorías</a>
+                <a href="/categorias" class="list-group-item active">Categorías</a>
                 <a href="/usuarios" class="list-group-item">Usuarios</a>
                 <a href="/reportes" class="list-group-item">Reportes</a>
             </div>
