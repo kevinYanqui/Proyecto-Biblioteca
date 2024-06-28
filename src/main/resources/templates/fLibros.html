@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca - Categorías</title>
+    <title>Biblioteca</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/offcanvas.css">
     <link rel="stylesheet" href="/css/cssUsuarios.css">
     <link rel="stylesheet" href="/css/jquery-ui-1.10.4.css">
+    <script src="/js/jquery-1.9.1.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/offcanvas.js"></script>
     <style>
         body {
             padding-top: 70px;
@@ -33,9 +38,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/perfilEmpleado" id="ediPer">Editar Perfil</a></li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="/cerrarSesion">Cerrar sesión</a>
-                        </li>
+                        <li><a href="/cerrarSesion">Cerrar sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -46,32 +49,40 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
-            <a href="/nuevaCategoria" class="btn btn-primary">Nuevo</a>
+            <a href="/nuevoLibro" class="btn btn-primary">Nuevo</a>
             <table class="table table-bordered table-hover" style="width: 100%">
                 <thead>
                 <tr>
                     <th>Código</th>
-                    <th>Nombres</th>
+                    <th>Título</th>
                     <th>Descripción</th>
+                    <th>Observaciones</th>
+                    <th>Autores</th>
+                    <th>Categoría</th>
+                    <th>Editores</th>
+                    <th>Ejemplares</th>
                     <th>Editar</th>
-                    <th>Estado</th>
+                    <th>Inhabilitar</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="categoria : ${categorias}">
-                    <td th:text="${categoria.codigoGen}"></td>
-                    <td th:text="${categoria.nombresGen}"></td>
-                    <td th:text="${categoria.descripcionGen}"></td>
+                <tr th:each="libro : ${libros}">
+                    <td th:text="${libro.codigoLib}"></td>
+                    <td th:text="${libro.tituloLib}"></td>
+                    <td th:text="${libro.decripcionLib}"></td>
+                    <td th:text="${libro.observaciones}"></td>
+                    <td th:text="${libro.codigoAut.nombresAut}"></td>
+                    <td th:text="${libro.codigoGen.nombresGen}"></td>
+                    <td th:text="${libro.codigoEdi.nomEdi}"></td>
+                    <td th:text="${libro.ejemplaresLib}"></td>
                     <td>
-                        <a th:href="@{/editarCategoria(id=${categoria.codigoGen})}" class="btn btn-secondary">
+                        <a th:href="@{/editarLibro(id=${libro.codigoLib})}" class="btn btn-secondary">
                         <img src="/Imagenes/Editar.png" alt="Editar" style="width: 20px; height: 20px;">
                         </a>
                     </td>
                     <td>
-                        <a th:href="@{/cambiarEstadoCategoria(id=${categoria.codigoGen}, estado=${categoria.estadoCat == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}"
-                           class="btn btn-secondary"
-                           th:text="${categoria.estadoCat == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}">
-                        </a>
+                        <a th:href="@{/cambiarEstadoLibro(id=${libro.codigoLib}, estado=${libro.estadoLibros == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}" class="btn btn-secondary"
+                           th:text="${libro.estadoLibros == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}"></a>
                     </td>
                 </tr>
                 </tbody>
@@ -81,10 +92,10 @@
             <div class="list-group">
                 <a href="/inicio" class="list-group-item">Inicio</a>
                 <a href="/prestamosUsu" class="list-group-item">Préstamos</a>
-                <a href="/libros" class="list-group-item">Libros</a>
+                <a href="/libros" class="list-group-item active">Libros</a>
                 <a href="/autores" class="list-group-item">Autores</a>
                 <a href="/editores" class="list-group-item">Editores</a>
-                <a href="/categorias" class="list-group-item active">Categorías</a>
+                <a href="/categorias" class="list-group-item">Categorías</a>
                 <a href="/usuarios" class="list-group-item">Usuarios</a>
                 <a href="/reportes" class="list-group-item">Reportes</a>
             </div>
@@ -96,9 +107,8 @@
     </footer>
 </div>
 
-<script src="/js/jquery-1.9.1.js"></script>
-<script src="/js/jquery-ui.js"></script>
 <script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/offcanvas.js"></script>
 </body>

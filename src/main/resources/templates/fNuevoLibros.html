@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Biblioteca - Nuevo Libro</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/offcanvas.css" rel="stylesheet">
+  <link href="/css/cssUsuarios.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/jquery-ui-1.10.4.css"/>
+  <script src="/js/jquery-1.9.1.js"></script>
+  <script src="/js/jquery-ui.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/offcanvas.js"></script>
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Biblioteca</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right" th:if="${atrUsuario != null}">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span th:text="${atrUsuario.nombres_usu} + ' ' + ${atrUsuario.apellidosPaterno_usu}"></span><b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="PerfilEmpleado" id="ediPer">Editar Perfil</a></li>
+            <li class="divider"></li>
+            <li><a href="sCerrarSesion">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+      <form th:action="@{/guardarNuevoLibro}" th:object="${libro}" method="post">
+        <div class="form-group">
+          <label for="tituloLib">Título:</label>
+          <input type="text" id="tituloLib" th:field="*{tituloLib}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <label for="codigoAut">Autor:</label>
+          <select id="codigoAut" th:field="*{codigoAut.codigoAut}" class="form-control" required>
+            <option th:each="autor : ${autores}" th:value="${autor.codigoAut}" th:text="${autor.nombresAut}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="codigoEdi">Editor:</label>
+          <select id="codigoEdi" th:field="*{codigoEdi.codigoEdi}" class="form-control" required>
+            <option th:each="editor : ${editores}" th:value="${editor.codigoEdi}" th:text="${editor.nomEdi}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="codigoGen">Categoría:</label>
+          <select id="codigoGen" th:field="*{codigoGen.codigoGen}" class="form-control" required>
+            <option th:each="categoria : ${categorias}" th:value="${categoria.codigoGen}" th:text="${categoria.nombresGen}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="estadoLibros">Estado:</label>
+          <select id="estadoLibros" th:field="*{estadoLibros}" class="form-control">
+            <option value="Habilitado">Habilitado</option>
+            <option value="Inhabilitado">Inhabilitado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ejemplaresLib">Ejemplares:</label>
+          <input type="number" id="ejemplaresLib" th:field="*{ejemplaresLib}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <label for="decripcionLib">Descripción:</label>
+          <textarea id="decripcionLib" th:field="*{decripcionLib}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="imagenLib">Imagen:</label>
+          <input type="text" id="imagenLib" th:field="*{imagenLib}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="observaciones">Observaciones:</label>
+          <textarea id="observaciones" th:field="*{observaciones}" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="stock">Stock:</label>
+          <input type="number" id="stock" th:field="*{stock}" class="form-control" required/>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+      <a href="/libros" class="btn btn-secondary">Cancelar</a>
+    </div>
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="list-group">
+        <a href="/inicio" class="list-group-item">Inicio</a>
+        <a href="/prestamosUsu" class="list-group-item">Préstamos</a>
+        <a href="/libros" class="list-group-item active">Libros</a>
+        <a href="/autores" class="list-group-item">Autores</a>
+        <a href="/editores" class="list-group-item">Editores</a>
+        <a href="/categorias" class="list-group-item">Categorías</a>
+        <a href="/usuarios" class="list-group-item">Usuarios</a>
+        <a href="/reportes" class="list-group-item">Reportes</a>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <p>&copy; Company 2024</p>
+  </footer>
+</div>
+</body>
+</html>

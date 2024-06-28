@@ -1,43 +1,46 @@
-.EditarDiv{
-        width: 24px;
-	height: 24px;
-        background-image: url(Editar.png);
-	background-repeat: no-repeat;
-	float: right;
-	margin: 0px 5px 0px 5px;
+.button-icon {
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
 }
-.InabilitarDiv{
-        width: 24px;
-	height: 24px;
-	background-image: url(Inabilitar.jpg);
-	background-repeat: no-repeat;
-	float: right;
-	margin: 0px 5px 0px 5px;
+
+.EditarDiv {
+    background-image: url(/static/Imagenes/Editar.png);
 }
-.HabilitarDiv{
-        width: 24px;
-	height: 24px;
-	background-image: url(Habilitar.png);
-	background-repeat: no-repeat;
-	float: right;
-	margin: 0px 5px 0px 5px;
+
+.InabilitarDiv {
+    background-image: url(/static/Imagenes/Inabilitar.jpg);
 }
-.titulo{ font-size: 12pt; font-weight: bold; height: 30pt;}
-#marcoVistaPrevia{
+
+.HabilitarDiv {
+    background-image: url(/static/Imagenes/Habilitar.png);
+}
+
+/* Otros estilos */
+.titulo {
+    font-size: 12pt;
+    font-weight: bold;
+    height: 30pt;
+}
+#marcoVistaPrevia {
     border: 1px solid #008000;
     width: 100px;
     height: 120px;
 }
-#vistaPrevia{
+#vistaPrevia {
     max-width: 100px;
-    max-height: 120px;          
+    max-height: 120px;
 }
-.InputsDiv{
+.InputsDiv {
     width: 150px;
     height: 25px;
     float: left;
 }
-.EspaciadorDiv{
+.EspaciadorDiv {
     height: 8px;
     clear: both;
 }

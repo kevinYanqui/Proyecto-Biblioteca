@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblioteca - Editores</title>
+  <title>Biblioteca - Usuarios</title>
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/offcanvas.css">
   <link rel="stylesheet" href="/css/cssUsuarios.css">
@@ -33,9 +33,7 @@
           <ul class="dropdown-menu">
             <li><a href="/perfilEmpleado" id="ediPer">Editar Perfil</a></li>
             <li class="divider"></li>
-            <li>
-              <a href="/cerrarSesion">Cerrar sesión</a>
-            </li>
+            <li><a href="/cerrarSesion">Cerrar sesión</a></li>
           </ul>
         </li>
       </ul>
@@ -46,32 +44,34 @@
 <div class="container">
   <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
-      <a href="/nuevoEditor" class="btn btn-primary">Nuevo</a>
+      <a href="/nuevoUsuario" class="btn btn-primary">Nuevo</a>
       <table class="table table-bordered table-hover" style="width: 100%">
         <thead>
         <tr>
           <th>Código</th>
-          <th>Nombre</th>
+          <th>DNI</th>
+          <th>Nombres</th>
+          <th>Apellidos Paterno</th>
           <th>Dirección</th>
-          <th>Editar</th>
+          <th>Fecha de Registro</th>
+          <th>Correo Electrónico</th>
+          <th>Tipo</th>
           <th>Estado</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="editor : ${editores}">
-          <td th:text="${editor.codigoEdi}"></td>
-          <td th:text="${editor.nomEdi}"></td>
-          <td th:text="${editor.direccion}"></td>
+        <tr th:each="usuario : ${usuarios}">
+          <td th:text="${usuario.codigoUsu}"></td>
+          <td th:text="${usuario.documentodeidentidad}"></td>
+          <td th:text="${usuario.nombresUsu}"></td>
+          <td th:text="${usuario.apellidospaternoUsu}"></td>
+          <td th:text="${usuario.direccionUsu}"></td>
+          <td th:text="${usuario.fechaRegistroUsu}"></td>
+          <td th:text="${usuario.correoelectronicoUsu}"></td>
+          <td th:text="${usuario.tipoUsu}"></td>
           <td>
-            <a th:href="@{/editarEditor(id=${editor.codigoEdi})}" class="btn btn-secondary">
-              <img src="/Imagenes/Editar.png" alt="Editar" style="width: 20px; height: 20px;">
-            </a>
-          </td>
-          <td>
-            <a th:href="@{/cambiarEstadoEditor(id=${editor.codigoEdi}, estado=${editor.estadoEdi == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}"
-               class="btn btn-secondary"
-               th:text="${editor.estadoEdi == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}">
-            </a>
+            <a th:href="@{/cambiarEstadoUsuario(id=${usuario.codigoUsu}, estado=${usuario.estadoUsuario == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}"
+               class="btn btn-secondary" th:text="${usuario.estadoUsuario == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}"></a>
           </td>
         </tr>
         </tbody>
@@ -83,9 +83,9 @@
         <a href="/prestamosUsu" class="list-group-item">Préstamos</a>
         <a href="/libros" class="list-group-item">Libros</a>
         <a href="/autores" class="list-group-item">Autores</a>
-        <a href="/editores" class="list-group-item active">Editores</a>
+        <a href="/editores" class="list-group-item">Editores</a>
         <a href="/categorias" class="list-group-item">Categorías</a>
-        <a href="/usuarios" class="list-group-item">Usuarios</a>
+        <a href="/usuarios" class="list-group-item active">Usuarios</a>
         <a href="/reportes" class="list-group-item">Reportes</a>
       </div>
     </div>

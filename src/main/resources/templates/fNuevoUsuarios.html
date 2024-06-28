@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Biblioteca - Nuevo Usuario</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/offcanvas.css" rel="stylesheet">
+  <link href="/css/cssUsuarios.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/jquery-ui-1.10.4.css"/>
+  <script src="/js/jquery-1.9.1.js"></script>
+  <script src="/js/jquery-ui.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/offcanvas.js"></script>
+  <style>
+    body {
+      padding-top: 70px;
+    }
+  </style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Biblioteca</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right" th:if="${atrUsuario != null}">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span th:text="${atrUsuario.nombresUsu} + ' ' + ${atrUsuario.apellidospaternoUsu}"></span><b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="PerfilEmpleado" id="ediPer">Editar Perfil</a></li>
+            <li class="divider"></li>
+            <li><a href="sCerrarSesion">Cerrar sesión</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-offcanvas row-offcanvas-right">
+    <div class="col-xs-12 col-sm-9">
+      <form th:action="@{/guardarNuevoUsuario}" th:object="${usuario}" method="post">
+        <div class="form-group">
+          <label for="nombresSesisonUsu">Usuario:</label>
+          <input type="text" id="nombresSesisonUsu" th:field="*{nombresSesisonUsu}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <label for="pswSesesionUs">Contraseña:</label>
+          <input type="password" id="pswSesesionUs" th:field="*{pswSesesionUs}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <label for="documentodeidentidad">DNI:</label>
+          <input type="text" id="documentodeidentidad" th:field="*{documentodeidentidad}" class="form-control" maxlength="8" required/>
+        </div>
+        <div class="form-group">
+          <label for="nombresUsu">Nombres:</label>
+          <input type="text" id="nombresUsu" th:field="*{nombresUsu}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <label for="apellidospaternoUsu">Apellido Paterno:</label>
+          <input type="text" id="apellidospaternoUsu" th:field="*{apellidospaternoUsu}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="apellidosmaternoUsu">Apellido Materno:</label>
+          <input type="text" id="apellidosmaternoUsu" th:field="*{apellidosmaternoUsu}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="telelefonoUsu">Telefono:</label>
+          <input type="text" id="telelefonoUsu" th:field="*{telelefonoUsu}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="direccionUsu">Direccion:</label>
+          <input type="text" id="direccionUsu" th:field="*{direccionUsu}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="correoelectronicoUsu">Correo Electronico:</label>
+          <input type="email" id="correoelectronicoUsu" th:field="*{correoelectronicoUsu}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <label for="fechaRegistroUsu">Fecha de Registro:</label>
+          <input type="date" id="fechaRegistroUsu" th:field="*{fechaRegistroUsu}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="fachaNacUsu">Fecha de Nacimiento:</label>
+          <input type="date" id="fachaNacUsu" th:field="*{fachaNacUsu}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="estadoUsuario">Estado:</label>
+          <input type="text" id="estadoUsuario" th:field="*{estadoUsuario}" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label for="tipoUsu">Tipo de usuario:</label>
+          <select id="tipoUsu" th:field="*{tipoUsu}" class="form-control">
+            <option value="Administrador">Administrador</option>
+            <option value="Bibliotecario">Bibliotecario</option>
+            <option value="Lector">Lector</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="imagen">Imagen:</label>
+          <input type="text" id="imagen" th:field="*{imagen}" class="form-control" value="default.png"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </form>
+      <a href="/usuarios" class="btn btn-secondary">Cancelar</a>
+    </div>
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="list-group">
+        <a href="/inicio" class="list-group-item">Inicio</a>
+        <a href="/prestamosUsu" class="list-group-item">Préstamos</a>
+        <a href="/libros" class="list-group-item">Libros</a>
+        <a href="/autores" class="list-group-item">Autores</a>
+        <a href="/editores" class="list-group-item">Editores</a>
+        <a href="/categorias" class="list-group-item">Categorías</a>
+        <a href="/usuarios" class="list-group-item active">Usuarios</a>
+        <a href="/reportes" class="list-group-item">Reportes</a>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <footer>
+    <p>&copy; Company 2024</p>
+  </footer>
+</div>
+</body>
+</html>

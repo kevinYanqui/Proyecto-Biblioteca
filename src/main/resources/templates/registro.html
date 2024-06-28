@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/offcanvas.css" rel="stylesheet">
+    <link href="/css/cssUsuarios.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/jquery-ui-1.10.4.css"/>
+    <link rel="stylesheet" href="/Estilos/jquery-ui.css"/>
+    <link rel="stylesheet" href="/Estilos/cssUsuarios.css"/>
+    <link rel="stylesheet" href="/Estilos/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/Estilos/jquery.ui.datepicker.css"/>
+    <script src="/Scripts/jquery-1.9.1.js"></script>
+    <script src="/Scripts/jquery-ui.js"></script>
+    <script src="/Scripts/jquery.ui.datepicker-es.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js"></script>
+    <script src="/Scripts/jsUsuarios.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Biblioteca</title>
+</head>
+<body>
+<h1 style="text-align: center">Regístrate en la biblioteca</h1>
+<hr>
+<div style="margin: 0 auto; border: solid #008000 1px; width: 400px; height: 600px; background-color: white; border: 1px;">
+    <form method="post" action="">
+        <div style="float: left">
+            <div class="InputsDiv">Usuario: </div>
+            <div class="InputsDiv"><input type="text" required name="nombresSesisonUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Contraseña: </div>
+            <div class="InputsDiv"><input type="password" required name="pswSesesionUs"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">DNI: </div>
+            <div class="InputsDiv"><input type="text" required name="documentodeidentidad"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Nombres: </div>
+            <div class="InputsDiv"><input type="text" required name="nombresUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Apellido Paterno: </div>
+            <div class="InputsDiv"><input type="text" name="apellidospaternoUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Apellido Materno: </div>
+            <div class="InputsDiv"><input type="text" name="apellidosmaternoUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Teléfono: </div>
+            <div class="InputsDiv"><input type="text" name="telelefonoUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Dirección: </div>
+            <div class="InputsDiv"><input type="text" name="direccionUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Correo Electrónico: </div>
+            <div class="InputsDiv"><input type="email" required name="correoelectronicoUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+            <div class="InputsDiv">Fecha de Nacimiento: </div>
+            <div class="InputsDiv"><input id="datepicker" type="date" name="fachaNacUsu"/></div>
+            <div class="EspaciadorDiv"></div>
+        </div>
+        <input type="hidden" id="tipoUsu" name="tipoUsu" value=""/>
+        <div class="EspaciadorDiv"></div>
+        <div class="InputsDiv"><input type="submit" value="Guardar" name="btnGuardar"/></div>
+    </form>
+    <form action="/">
+        <div class="InputsDiv"><input type="submit" value="Cancelar" name="btnCancelar"/></div>
+        <div class="EspaciadorDiv"></div>
+    </form>
+</div>
+</body>
+</html>
