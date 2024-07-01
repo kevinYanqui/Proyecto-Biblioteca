@@ -71,7 +71,10 @@
           <td th:text="${usuario.tipoUsu}"></td>
           <td>
             <a th:href="@{/cambiarEstadoUsuario(id=${usuario.codigoUsu}, estado=${usuario.estadoUsuario == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}"
-               class="btn btn-secondary" th:text="${usuario.estadoUsuario == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}"></a>
+               class="btn btn-secondary">
+              <img th:src="${usuario.estadoUsuario == 'Habilitado' ? '/Imagenes/Inabilitar.jpg' : '/Imagenes/Habilitar.png'}"
+                   alt="Estado" style="width: 20px; height: 20px;">
+            </a>
           </td>
         </tr>
         </tbody>

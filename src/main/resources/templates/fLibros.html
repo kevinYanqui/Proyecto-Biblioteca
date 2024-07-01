@@ -81,8 +81,11 @@
                         </a>
                     </td>
                     <td>
-                        <a th:href="@{/cambiarEstadoLibro(id=${libro.codigoLib}, estado=${libro.estadoLibros == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}" class="btn btn-secondary"
-                           th:text="${libro.estadoLibros == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}"></a>
+                        <a th:href="@{/cambiarEstadoLibro(id=${libro.codigoLib}, estado=${libro.estadoLibros == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}"
+                           class="btn btn-secondary">
+                            <img th:src="${libro.estadoLibros == 'Habilitado' ? '/Imagenes/Inabilitar.jpg' : '/Imagenes/Habilitar.png'}"
+                                 alt="Estado" style="width: 20px; height: 20px;">
+                        </a>
                     </td>
                 </tr>
                 </tbody>

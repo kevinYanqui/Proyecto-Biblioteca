@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar Libros</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-top: 20px;
+    }
+    .navbar {
+      margin-bottom: 20px;
+    }
+    .table-container {
+      margin-top: 20px;
+    }
+    .navbar-nav {
+      flex-direction: row;
+    }
+    .nav-link {
+      padding-right: .5rem !important;
+      padding-left: .5rem !important;
+    }
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Biblioteca</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Inicio</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Reservar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Buscar Libros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Historial</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Search Form and Table -->
+<div class="container table-container">
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-center">
+      <form th:action="@{/buscarLibros}" method="get" class="form-inline">
+        <input type="text" name="query" class="form-control w-25" placeholder="Buscar">
+        <select name="filtro" class="form-control w-25 ml-2">
+          <option>Todos</option>
+          <option>Título</option>
+          <option>Autor</option>
+          <option>Editor</option>
+        </select>
+        <button type="submit" class="btn btn-primary ml-2">Buscar</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Título</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Observaciones</th>
+          <th scope="col">Autores</th>
+          <th scope="col">Categoría</th>
+          <th scope="col">Editores</th>
+          <th scope="col">Ejemplares</th>
+          <th scope="col">Opción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="libro : ${libros}">
+          <td th:text="${libro.codigoLib}"></td>
+          <td th:text="${libro.tituloLib}"></td>
+          <td th:text="${libro.decripcionLib}"></td>
+          <td th:text="${libro.observaciones}"></td>
+          <td th:text="${libro.codigoAut.nombresAut}"></td>
+          <td th:text="${libro.codigoGen.nombresGen}"></td>
+          <td th:text="${libro.codigoEdi.nomEdi}"></td>
+          <td th:text="${libro.ejemplaresLib}"></td>
+          <td>
+            <a th:href="@{/reservarLibro(id=${libro.codigoLib})}" class="btn btn-secondary">Reservar</a>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(libros)}">
+          <td colspan="9" class="text-center">No se ha encontrado ningún libro</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>&copy; Company 2024</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

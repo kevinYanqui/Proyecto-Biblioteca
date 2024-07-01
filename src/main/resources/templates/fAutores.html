@@ -70,8 +70,9 @@
                     </td>
                     <td>
                         <a th:href="@{/cambiarEstadoAutor(id=${autor.codigoAut}, estado=${autor.estadoAut == 'Habilitado' ? 'Inhabilitado' : 'Habilitado'})}"
-                           class="btn btn-secondary"
-                           th:text="${autor.estadoAut == 'Habilitado' ? 'Inhabilitar' : 'Habilitar'}">
+                           class="btn btn-secondary">
+                            <img th:src="${autor.estadoAut == 'Habilitado' ? '/Imagenes/Inabilitar.jpg' : '/Imagenes/Habilitar.png'}"
+                                 alt="Estado" style="width: 20px; height: 20px;">
                         </a>
                     </td>
                 </tr>
@@ -92,7 +93,9 @@
         </div>
     </div>
     <hr>
-    <footer
+    <footer>
+        <p>&copy; Company 2024</p>
+    </footer>
 </div>
 
 <script src="/js/jquery-1.9.1.js"></script>
