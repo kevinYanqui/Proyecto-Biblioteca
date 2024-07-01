@@ -99,8 +99,12 @@
           <td th:text="${libro.codigoEdi.nomEdi}"></td>
           <td th:text="${libro.ejemplaresLib}"></td>
           <td>
-            <a th:href="@{/reservarLibro(id=${libro.codigoLib})}" class="btn btn-secondary">Reservar</a>
+            <form th:action="@{/reservarLibro}" method="post">
+              <input type="hidden" name="id" th:value="${libro.codigoLib}"/>
+              <button type="submit" class="btn btn-secondary">Reservar</button>
+            </form>
           </td>
+
         </tr>
         <tr th:if="${#lists.isEmpty(libros)}">
           <td colspan="9" class="text-center">No se ha encontrado ningún libro</td>
