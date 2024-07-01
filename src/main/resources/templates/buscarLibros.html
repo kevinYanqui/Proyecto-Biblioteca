@@ -5,31 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buscar Libros</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      padding-top: 20px;
-    }
-    .navbar {
-      margin-bottom: 20px;
-    }
-    .table-container {
-      margin-top: 20px;
-    }
-    .navbar-nav {
-      flex-direction: row;
-    }
-    .nav-link {
-      padding-right: .5rem !important;
-      padding-left: .5rem !important;
-    }
-    .footer {
-      margin-top: 20px;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" href="/static/css/buscarLibros.css">
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="#">Biblioteca</a>
@@ -42,7 +20,7 @@
           <a class="nav-link" href="#">Inicio</a>
         </li>
         <li class="nav-item" th:classappend="${activePage == 'reservar'} ? 'active' : ''">
-          <a class="nav-link" href="#">Reservar</a>
+          <a class="nav-link" href="http://localhost:8080/reservas">Reservar</a>
         </li>
         <li class="nav-item" th:classappend="${activePage == 'buscarLibros'} ? 'active' : ''">
           <a class="nav-link" href="#">Buscar Libros</a>

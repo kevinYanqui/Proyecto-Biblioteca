@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Iniciar Sesion</title>
+  <title>Iniciar Sesión - Biblioteca</title>
   <link href="/Estilos/bootstrap.min.css" rel="stylesheet">
   <link href="/Estilos/cssIniciarSesion.css" rel="stylesheet">
   <link href="/Estilos/jquery-ui.css" rel="stylesheet">
-  <script type="text/javascript" src="/Scripts/jquery-ui.js"></script>
-  <script type="text/javascript" src="/Scripts/jquery-1.9.1.js"></script>
-  <style type="text/css">
-    .Spacioador {
-      position: relative;
-      width: auto;
-      height: 20px;
-      z-index: 1;
-    }
-  </style>
+  <link href="/Estilos/estilosAdicionales.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-<form action="/login" method="post" class="form-signin" role="form">
-  <div class="form-signin-heading">Acceso</div>
-  <input type="text" class="form-control" id="nombresSesisonUsu" name="username" placeholder="Nombre de Usuario" required autofocus>
-  <div class="Spacioador"></div>
-  <input type="password" class="form-control" id="pswSesesionUs" name="password" placeholder="Contraseña" required>
-  <label class="checkbox">
-    <input type="checkbox" value="Recordando" name="Recordar"> Recordar acceso
-  </label>
-  <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnIngresar">Login</button>
-  <div class="Spacioador"></div>
-</form>
-<p align="center">Para poder reservar libros necesitas registrarte <a href="/registro/usuario">Regístrate</a></p>
+<div class="container">
+  <form action="/login" method="post" class="form-signin" role="form">
+    <h2 class="form-signin-heading text-center">Acceso Biblioteca</h2>
+    <div class="form-group">
+      <label for="nombresSesionUsu" class="sr-only">Nombre de Usuario</label>
+      <input type="text" id="nombresSesionUsu" name="username" class="form-control" placeholder="Nombre de Usuario" required autofocus>
+    </div>
+    <div class="form-group">
+      <label for="pswSesionUs" class="sr-only">Contraseña</label>
+      <input type="password" id="pswSesionUs" name="password" class="form-control" placeholder="Contraseña" required>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="Recordar" value="Recordando"> Recordar acceso
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" name="btnIngresar">Login</button>
+  </form>
+  <p class="text-center">Para poder reservar libros necesitas registrarte <a href="/registro/usuario">Regístrate</a></p>
+</div>
+<script src="/Scripts/jquery-1.9.1.js"></script>
+<script src="/Scripts/jquery-ui.js"></script>
+<script src="/Scripts/login.js"></script>
 </body>
 </html>
