@@ -1,8 +1,10 @@
 package com.Proyecto.Biblioteca.presentation.controller;
 
+import com.Proyecto.Biblioteca.domain.model.HistorialReserva;
 import com.Proyecto.Biblioteca.domain.model.Reserva;
 import com.Proyecto.Biblioteca.domain.model.Libros;
 import com.Proyecto.Biblioteca.business.service.LibrosService;
+import com.Proyecto.Biblioteca.persistence.repository.HistorialReservaRepository;
 import com.Proyecto.Biblioteca.persistence.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class ReservasController {
 
     @Autowired
     private ReservaRepository reservaRepository;
+
+    @Autowired
+    private HistorialReservaRepository historialReservaRepository;
 
     @PostMapping("/reservarLibro")
     public String reservarLibro(@RequestParam Long id, Principal principal) {
@@ -50,8 +55,17 @@ public class ReservasController {
 
     @PostMapping("/completarReserva")
     public String completarReserva(RedirectAttributes redirectAttributes, Principal principal) {
-        // Aquí puedes realizar las acciones necesarias para completar la reserva.
-        // Por ejemplo, podrías mover las reservas a una tabla de historial.
+        List<Reserva> reservas = reservaRepository.findByUsuario(principal.getName());
+
+        for (Reserva reserva : reservas) {
+            HistorialReserva historialReserva = new HistorialReserva();
+            historialReserva.setLibro(reserva.getLibro());
+            historialReserva.setUsuario(reserva.getUsuario());
+            historialReserva.setAutor(reserva.getAutor());
+            historialReservaRepository.save(historialReserva);
+        }
+
+        reservaRepository.deleteAll(reservas);
 
         redirectAttributes.addFlashAttribute("mensaje", "Reserva realizada con éxito");
         return "redirect:/reservas";
@@ -59,7 +73,7 @@ public class ReservasController {
 
     @GetMapping("/historial")
     public String verHistorial(Model model, Principal principal) {
-        List<Reserva> historial = reservaRepository.findByUsuario(principal.getName());
+        List<HistorialReserva> historial = historialReservaRepository.findByUsuario(principal.getName());
         model.addAttribute("reservas", historial);
         return "historial";
     }
