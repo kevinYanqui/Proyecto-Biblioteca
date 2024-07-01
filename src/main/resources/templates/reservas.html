@@ -20,13 +20,13 @@
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Reservar</a>
+                    <a class="nav-link" href="/reservas">Reservar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Buscar Libros</a>
+                    <a class="nav-link" href="/buscarLibros">Buscar Libros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Historial</a>
+                    <a class="nav-link" href="/historial">Historial</a>
                 </li>
             </ul>
         </div>
@@ -38,6 +38,9 @@
     <div class="row">
         <div class="col-12">
             <h2>Mis Reservas</h2>
+            <div th:if="${mensaje}" class="alert alert-success" role="alert">
+                <p th:text="${mensaje}"></p>
+            </div>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -64,6 +67,13 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <form th:action="@{/completarReserva}" method="post">
+                <button type="submit" class="btn btn-success">Completar Reserva</button>
+            </form>
         </div>
     </div>
 </div>
