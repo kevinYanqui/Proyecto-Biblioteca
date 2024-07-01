@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Reservas</title>
+    <title>Historial de Reservas</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -19,14 +19,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Inicio</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Reservar</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reservas">Reservar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Buscar Libros</a>
+                    <a class="nav-link" href="/buscarLibros">Buscar Libros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Historial</a>
+                    <a class="nav-link" href="/historial">Historial</a>
                 </li>
             </ul>
         </div>
@@ -37,14 +37,15 @@
 <div class="container table-container">
     <div class="row">
         <div class="col-12">
-            <h2>Mis Reservas</h2>
+            <h2>Historial de Reservas</h2>
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th scope="col">Código</th>
                     <th scope="col">Título</th>
                     <th scope="col">Descripción</th>
-                    <th scope="col">Opción</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Usuario</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,15 +53,11 @@
                     <td th:text="${reserva.libro.codigoLib}"></td>
                     <td th:text="${reserva.libro.tituloLib}"></td>
                     <td th:text="${reserva.libro.decripcionLib}"></td>
-                    <td>
-                        <form th:action="@{/cancelarReserva}" method="post">
-                            <input type="hidden" name="id" th:value="${reserva.idReserva}"/>
-                            <button type="submit" class="btn btn-danger">Cancelar</button>
-                        </form>
-                    </td>
+                    <td th:text="${reserva.libro.codigoAut.nombresAut}"></td>
+                    <td th:text="${reserva.usuario}"></td>
                 </tr>
                 <tr th:if="${#lists.isEmpty(reservas)}">
-                    <td colspan="4" class="text-center">No tienes ninguna reserva</td>
+                    <td colspan="5" class="text-center">No tienes ningún historial de reservas</td>
                 </tr>
                 </tbody>
             </table>

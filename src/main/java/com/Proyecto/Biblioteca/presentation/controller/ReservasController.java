@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -45,5 +46,21 @@ public class ReservasController {
     public String cancelarReserva(@RequestParam Long id) {
         reservaRepository.deleteById(id);
         return "redirect:/reservas";
+    }
+
+    @PostMapping("/completarReserva")
+    public String completarReserva(RedirectAttributes redirectAttributes, Principal principal) {
+        // Aquí puedes realizar las acciones necesarias para completar la reserva.
+        // Por ejemplo, podrías mover las reservas a una tabla de historial.
+
+        redirectAttributes.addFlashAttribute("mensaje", "Reserva realizada con éxito");
+        return "redirect:/reservas";
+    }
+
+    @GetMapping("/historial")
+    public String verHistorial(Model model, Principal principal) {
+        List<Reserva> historial = reservaRepository.findByUsuario(principal.getName());
+        model.addAttribute("reservas", historial);
+        return "historial";
     }
 }
