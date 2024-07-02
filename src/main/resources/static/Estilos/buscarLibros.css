@@ -1,5 +1,5 @@
 body {
-    background: url('https://www.analisisdigital.com.ar/sites/default/files/imagenNoticiaDigital/bibliotecas-980x550-c-center.jpg') no-repeat center center fixed;
+    background: url('https://universoabierto.org/wp-content/uploads/2018/08/hipster-student-picking-book-library-university-61441318.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #ffffff;
 }
@@ -35,24 +35,34 @@ h2 {
     color: #ffffff;
 }
 
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
+.form-inline .form-control {
+    margin-bottom: 10px;
 }
 
-.btn-success:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
-.btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
 }
 
-.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    color: #ffffff;
 }
 
 .alert-success {
