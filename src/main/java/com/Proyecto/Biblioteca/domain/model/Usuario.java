@@ -27,7 +27,7 @@ public class Usuario {
     @Column(name = "apellidosmaterno_usu", length = 50)
     private String apellidosmaternoUsu;
 
-    @Column(name = "telelefono_usu", length = 8)
+    @Column(name = "telelefono_usu", length = 9)
     private String telelefonoUsu;
 
     @Column(name = "direccion_usu", length = 100)

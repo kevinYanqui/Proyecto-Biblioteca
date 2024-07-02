@@ -37,4 +37,19 @@ public class LibrosServiceImpl implements LibrosService {
     public void guardarLibro(Libros libro) {
         librosRepository.save(libro);
     }
+
+    @Override
+    public List<Libros> buscarLibrosPorTitulo(String titulo) {
+        return librosRepository.findByTituloLibContaining(titulo);
+    }
+
+    @Override
+    public List<Libros> buscarLibrosPorAutor(String autor) {
+        return librosRepository.findByCodigoAut_NombresAutContaining(autor);
+    }
+
+    @Override
+    public List<Libros> buscarLibrosPorEditor(String editor) {
+        return librosRepository.findByCodigoEdi_NomEdiContaining(editor);
+    }
 }

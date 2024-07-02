@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
@@ -47,6 +48,10 @@ public class RegistrationController {
             return "registro";
         }
         usuario.setTipoUsu("Administrador");
+        usuario.setEstadoUsuario("Habilitado");
+        LocalDate fechaActual = LocalDate.now();
+        String fechaRegistro = fechaActual.toString();
+        usuario.setFechaRegistroUsu(LocalDate.parse(fechaRegistro));
         usuario.setPswSesesionUs(passwordEncoder.encode(usuario.getPswSesesionUs()));
         usuarioService.guardarUsuario(usuario);
         return "redirect:/login";
@@ -60,6 +65,10 @@ public class RegistrationController {
             return "registro";
         }
         usuario.setTipoUsu("Lector");
+        usuario.setEstadoUsuario("Habilitado");
+        LocalDate fechaActual = LocalDate.now();
+        String fechaRegistro = fechaActual.toString();
+        usuario.setFechaRegistroUsu(LocalDate.parse(fechaRegistro));
         usuario.setPswSesesionUs(passwordEncoder.encode(usuario.getPswSesesionUs()));
         usuarioService.guardarUsuario(usuario);
         return "redirect:/login";

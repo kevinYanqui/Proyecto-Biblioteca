@@ -1,14 +1,16 @@
 package com.Proyecto.Biblioteca.presentation.controller;
 
-import com.Proyecto.Biblioteca.domain.model.Autores;
-import com.Proyecto.Biblioteca.domain.model.Categoria;
-import com.Proyecto.Biblioteca.domain.model.Editores;
-import com.Proyecto.Biblioteca.domain.model.Libros;
 import com.Proyecto.Biblioteca.business.service.AutoresService;
 import com.Proyecto.Biblioteca.business.service.CategoriaService;
 import com.Proyecto.Biblioteca.business.service.EditoresService;
 import com.Proyecto.Biblioteca.business.service.LibrosService;
+import com.Proyecto.Biblioteca.domain.model.Autores;
+import com.Proyecto.Biblioteca.domain.model.Categoria;
+import com.Proyecto.Biblioteca.domain.model.Editores;
+import com.Proyecto.Biblioteca.domain.model.Libros;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,8 @@ public class LibrosController {
     public String listarLibros(Model model) {
         List<Libros> libros = librosService.obtenerTodosLosLibros();
         model.addAttribute("libros", libros);
+        String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        model.addAttribute("username", username);
         return "fLibros";
     }
 

@@ -28,8 +28,8 @@ public class WebSecurityConfig {
                     registry.requestMatchers("/login", "/", "/registro/usuario",
                             "/static/**", "/css/**","/Estilos/**","/js/**",
                             "/images/**","/Scripts/**").permitAll();
-                    registry.requestMatchers("/autores").hasAuthority("ROLE_Administrador");
-                    registry.requestMatchers("/categorias").hasAuthority("ROLE_Lector");
+                    registry.requestMatchers("/registro/admin").hasAuthority("ROLE_Administrador");
+                    //registry.requestMatchers("/categorias").hasAuthority("ROLE_Lector");
                     registry.anyRequest().authenticated();
                 })
                 .formLogin(form -> form

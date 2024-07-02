@@ -4,7 +4,6 @@ import com.Proyecto.Biblioteca.business.service.UsuarioService;
 import com.Proyecto.Biblioteca.domain.model.Usuario;
 import com.Proyecto.Biblioteca.persistence.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

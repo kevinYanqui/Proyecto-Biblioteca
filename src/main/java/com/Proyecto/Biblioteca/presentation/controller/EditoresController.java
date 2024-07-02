@@ -1,8 +1,10 @@
 package com.Proyecto.Biblioteca.presentation.controller;
 
-import com.Proyecto.Biblioteca.domain.model.Editores;
 import com.Proyecto.Biblioteca.business.service.EditoresService;
+import com.Proyecto.Biblioteca.domain.model.Editores;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,8 @@ public class EditoresController {
     public String listarEditores(Model model) {
         List<Editores> editores = editoresService.obtenerTodosLosEditores();
         model.addAttribute("editores", editores);
+        String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        model.addAttribute("username", username);
         return "fEditores";
     }
 

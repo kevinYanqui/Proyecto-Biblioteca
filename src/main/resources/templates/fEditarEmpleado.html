@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteca - Nueva Categoría</title>
+    <title>Biblioteca - Editar Usuario</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/offcanvas.css" rel="stylesheet">
     <link href="/css/cssUsuarios.css" rel="stylesheet">
@@ -49,34 +49,52 @@
 <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
-            <form th:action="@{/guardarNuevaCategoria}" th:object="${categoria}" method="post">
+            <form th:action="@{/actualizarUsuario}" th:object="${usuario}" method="post">
+                <input type="hidden" th:field="*{codigoUsu}"/>
                 <div class="form-group">
-                    <label for="nombresGen">Nombres:</label>
-                    <input type="text" id="nombresGen" th:field="*{nombresGen}" class="form-control" required/>
+                    <label for="nombresUsu">Nombres:</label>
+                    <input type="text" id="nombresUsu" th:field="*{nombresUsu}" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label for="descripcionGen">Descripción:</label>
-                    <input type="text" id="descripcionGen" th:field="*{descripcionGen}" class="form-control"/>
+                    <label for="apellidospaternoUsu">Apellido Paterno:</label>
+                    <input type="text" id="apellidospaternoUsu" th:field="*{apellidospaternoUsu}" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <label for="estadoCat">Estado:</label>
-                    <select id="estadoCat" th:field="*{estadoCat}" class="form-control">
-                        <option value="Habilitado">Habilitado</option>
-                        <option value="Inhabilitado">Inhabilitado</option>
-                    </select>
+                    <label for="apellidosmaternoUsu">Apellido Materno:</label>
+                    <input type="text" id="apellidosmaternoUsu" th:field="*{apellidosmaternoUsu}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="telelefonoUsu">Teléfono:</label>
+                    <input type="text" id="telelefonoUsu" th:field="*{telelefonoUsu}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="direccionUsu">Dirección:</label>
+                    <input type="text" id="direccionUsu" th:field="*{direccionUsu}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="correoelectronicoUsu">Correo Electrónico:</label>
+                    <input type="email" id="correoelectronicoUsu" th:field="*{correoelectronicoUsu}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="nombresSesisonUsu">Nombre de Sesión:</label>
+                    <input type="text" id="nombresSesisonUsu" th:field="*{nombresSesisonUsu}" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="pswSesesionUs">Contraseña de Sesión:</label>
+                    <input type="password" id="pswSesesionUs" th:field="*{pswSesesionUs}" class="form-control"/>
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </form>
-            <a href="/categorias" class="btn btn-secondary">Cancelar</a>
+            <a href="/empleado" class="btn btn-secondary">Cancelar</a>
         </div>
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <div class="list-group">
-                <a href="/empleado" class="list-group-item">Inicio</a>
+                <a href="/empleado" class="list-group-item active">Inicio</a>
                 <a href="/prestamosUsu" class="list-group-item">Préstamos</a>
                 <a href="/libros" class="list-group-item">Libros</a>
                 <a href="/autores" class="list-group-item">Autores</a>
                 <a href="/editores" class="list-group-item">Editores</a>
-                <a href="/categorias" class="list-group-item active">Categorías</a>
+                <a href="/categorias" class="list-group-item">Categorías</a>
                 <a href="/usuarios" class="list-group-item">Usuarios</a>
             </div>
         </div>
