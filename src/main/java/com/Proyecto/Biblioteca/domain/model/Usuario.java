@@ -173,5 +173,4 @@ public class Usuario {
     public void setNombresSesisonUsu(String nombresSesisonUsu) {
         this.nombresSesisonUsu = nombresSesisonUsu;
     }
-
 }

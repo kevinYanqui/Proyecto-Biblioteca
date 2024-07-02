@@ -1,6 +1,7 @@
 package com.Proyecto.Biblioteca.domain.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reservas")
@@ -17,8 +18,11 @@ public class Reserva {
     @Column(name = "usuario", nullable = false, length = 50)
     private String usuario;
 
-    @Column(name = "autor", nullable = false, length = 50) // Asegúrate de que el nombre y el tipo de columna coincidan con tu base de datos
+    @Column(name = "autor", nullable = false, length = 50)
     private String autor;
+
+    @Column(name = "fecha_reserva", nullable = false)
+    private LocalDateTime fechaReserva;
 
     // Getters y setters...
 
@@ -52,5 +56,13 @@ public class Reserva {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public LocalDateTime getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(LocalDateTime fechaReserva) {
+        this.fechaReserva = fechaReserva;
     }
 }
