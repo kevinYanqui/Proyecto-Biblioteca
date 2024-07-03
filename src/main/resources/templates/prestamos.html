@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Reservas</title>
+    <title>Préstamos</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Estilos/historial.css" rel="stylesheet">
+    <link href="/Estilos/prestamos.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -28,6 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/historial">Historial</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/prestamos">Préstamos</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -35,7 +38,7 @@
 <div class="container table-container">
     <div class="row">
         <div class="col-12">
-            <h2>Historial de Reservas</h2>
+            <h2>Préstamos</h2>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -43,19 +46,23 @@
                     <th scope="col">Título</th>
                     <th scope="col">Descripción</th>
                     <th scope="col">Autor</th>
-                    <th scope="col">Fecha y Hora</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Fecha Préstamo</th>
+                    <th scope="col">Fecha Devolución</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="reserva : ${reservas}">
-                    <td th:text="${reserva.libro.codigoLib}"></td>
-                    <td th:text="${reserva.libro.tituloLib}"></td>
-                    <td th:text="${reserva.libro.decripcionLib}"></td>
-                    <td th:text="${reserva.autor}"></td>
-                    <td th:text="${#temporals.format(reserva.fechaReserva, 'dd/MM/yyyy HH:mm:ss')}"></td>
+                <tr th:each="prestamo : ${prestamos}">
+                    <td th:text="${prestamo.libro.codigoLib}"></td>
+                    <td th:text="${prestamo.libro.tituloLib}"></td>
+                    <td th:text="${prestamo.libro.decripcionLib}"></td>
+                    <td th:text="${prestamo.autor}"></td>
+                    <td th:text="${prestamo.usuario}"></td>
+                    <td th:text="${#temporals.format(prestamo.fechaPrestamo, 'dd/MM/yyyy HH:mm:ss')}"></td>
+                    <td th:text="${#temporals.format(prestamo.fechaDevolucion, 'dd/MM/yyyy HH:mm:ss')}"></td>
                 </tr>
-                <tr th:if="${#lists.isEmpty(reservas)}">
-                    <td colspan="5" class="text-center">No tienes ningún historial de reservas</td>
+                <tr th:if="${#lists.isEmpty(prestamos)}">
+                    <td colspan="7" class="text-center">No tienes ningún préstamo activo</td>
                 </tr>
                 </tbody>
             </table>
@@ -67,3 +74,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+

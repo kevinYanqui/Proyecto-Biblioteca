@@ -1,68 +1,79 @@
 package com.Proyecto.Biblioteca.domain.model;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "prestamo")
+@Table(name = "prestamos")
 public class Prestamo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo_pre", nullable = false, length = 6)
-    private Long codigoPre;
+    @Column(name = "id_prestamo", nullable = false)
+    private Long idPrestamo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "codigo_usu_lector")
-    private Usuario codigoUsuLector;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "codigo_lib", nullable = false)
+    private Libros libro;
 
-    @Column(name = "estado_prestamo", length = 50)
-    private String estadoPrestamo;
+    @Column(name = "usuario", nullable = false, length = 50)
+    private String usuario;
 
-    @Column(name = "fecha_prestamo")
-    private LocalDate fechaPrestamo;
+    @Column(name = "autor", nullable = false, length = 50)
+    private String autor;
 
-    @Column(name = "fechalimite_devolucion")
-    private LocalDate fechalimiteDevolucion;
+    @Column(name = "fecha_prestamo", nullable = false)
+    private LocalDateTime fechaPrestamo;
 
-    public Long getCodigoPre() {
-        return codigoPre;
+    @Column(name = "fecha_devolucion", nullable = false)
+    private LocalDateTime fechaDevolucion;
+
+    // Getters y setters...
+
+    public Long getIdPrestamo() {
+        return idPrestamo;
     }
 
-    public void setCodigoPre(Long codigoPre) {
-        this.codigoPre = codigoPre;
+    public void setIdPrestamo(Long idPrestamo) {
+        this.idPrestamo = idPrestamo;
     }
 
-    public Usuario getCodigoUsuLector() {
-        return codigoUsuLector;
+    public Libros getLibro() {
+        return libro;
     }
 
-    public void setCodigoUsuLector(Usuario codigoUsuLector) {
-        this.codigoUsuLector = codigoUsuLector;
+    public void setLibro(Libros libro) {
+        this.libro = libro;
     }
 
-    public String getEstadoPrestamo() {
-        return estadoPrestamo;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEstadoPrestamo(String estadoPrestamo) {
-        this.estadoPrestamo = estadoPrestamo;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public LocalDate getFechaPrestamo() {
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public LocalDateTime getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(LocalDate fechaPrestamo) {
+    public void setFechaPrestamo(LocalDateTime fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public LocalDate getFechalimiteDevolucion() {
-        return fechalimiteDevolucion;
+    public LocalDateTime getFechaDevolucion() {
+        return fechaDevolucion;
     }
 
-    public void setFechalimiteDevolucion(LocalDate fechalimiteDevolucion) {
-        this.fechalimiteDevolucion = fechalimiteDevolucion;
+    public void setFechaDevolucion(LocalDateTime fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
     }
-
 }

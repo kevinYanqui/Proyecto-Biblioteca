@@ -22,6 +22,6 @@ public class PrestamosController {
         model.addAttribute("prestamos", prestamos);
         String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         model.addAttribute("username", username);
-        return "fPrestamosUsu";
+        return "prestamos";
     }
 }

@@ -1,14 +1,15 @@
 package com.Proyecto.Biblioteca.domain.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "historial_reservas")
 public class HistorialReserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_historial_reserva", nullable = false)
-    private Long idHistorialReserva;
+    @Column(name = "id_historial", nullable = false)
+    private Long idHistorial;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "codigo_lib", nullable = false)
@@ -20,14 +21,17 @@ public class HistorialReserva {
     @Column(name = "autor", nullable = false, length = 50)
     private String autor;
 
+    @Column(name = "fecha_reserva", nullable = false)
+    private LocalDateTime fechaReserva;
+
     // Getters y setters...
 
-    public Long getIdHistorialReserva() {
-        return idHistorialReserva;
+    public Long getIdHistorial() {
+        return idHistorial;
     }
 
-    public void setIdHistorialReserva(Long idHistorialReserva) {
-        this.idHistorialReserva = idHistorialReserva;
+    public void setIdHistorial(Long idHistorial) {
+        this.idHistorial = idHistorial;
     }
 
     public Libros getLibro() {
@@ -52,5 +56,13 @@ public class HistorialReserva {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public LocalDateTime getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(LocalDateTime fechaReserva) {
+        this.fechaReserva = fechaReserva;
     }
 }
