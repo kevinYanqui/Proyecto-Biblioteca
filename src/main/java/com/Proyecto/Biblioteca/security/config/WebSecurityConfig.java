@@ -28,7 +28,9 @@ public class WebSecurityConfig {
                     registry.requestMatchers("/login", "/", "/registro/usuario",
                             "/static/**", "/css/**","/Estilos/**","/js/**",
                             "/images/**","/Scripts/**").permitAll();
-                    registry.requestMatchers("/registro/admin").hasAuthority("ROLE_Administrador");
+                    registry.requestMatchers("/registro/admin","prestamosUsu","/autores","/categorias","editores","libros","usuarios").
+                            hasAuthority("ROLE_Administrador");
+                    registry.requestMatchers("/reservas","/historial","/buscarLibros").hasAuthority("ROLE_Lector");
                     //registry.requestMatchers("/categorias").hasAuthority("ROLE_Lector");
                     registry.anyRequest().authenticated();
                 })

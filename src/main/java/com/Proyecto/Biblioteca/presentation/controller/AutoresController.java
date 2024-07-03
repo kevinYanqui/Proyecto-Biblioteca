@@ -1,6 +1,6 @@
 package com.Proyecto.Biblioteca.presentation.controller;
 
-import com.Proyecto.Biblioteca.business.service.AutoresService;
+import com.Proyecto.Biblioteca.business.facade.AutoresFacade;
 import com.Proyecto.Biblioteca.domain.model.Autores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,11 +18,11 @@ import java.util.List;
 public class AutoresController {
 
     @Autowired
-    private AutoresService autoresService;
+    private AutoresFacade autoresFacade;
 
     @GetMapping("/autores")
     public String listarAutores(Model model) {
-        List<Autores> autores = autoresService.obtenerTodosLosAutores();
+        List<Autores> autores = autoresFacade.obtenerTodosLosAutores();
         model.addAttribute("autores", autores);
         String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         model.addAttribute("username", username);
@@ -31,7 +31,7 @@ public class AutoresController {
 
     @GetMapping("/cambiarEstadoAutor")
     public String cambiarEstadoAutor(@RequestParam("id") String id, @RequestParam("estado") String estado) {
-        autoresService.cambiarEstadoAutor(id, estado);
+        autoresFacade.cambiarEstadoAutor(id, estado);
         return "redirect:/autores";
     }
 
@@ -44,20 +44,20 @@ public class AutoresController {
 
     @PostMapping("/guardarNuevoAutor")
     public String guardarNuevoAutor(@ModelAttribute("autor") Autores autor) {
-        autoresService.guardarAutor(autor);
+        autoresFacade.guardarAutor(autor);
         return "redirect:/autores";
     }
 
     @GetMapping("/editarAutor")
     public String mostrarFormularioEditarAutor(@RequestParam("id") String id, Model model) {
-        Autores autor = autoresService.obtenerAutorPorId(id);
+        Autores autor = autoresFacade.obtenerAutorPorId(id);
         model.addAttribute("autor", autor);
         return "fEditarAutores";
     }
 
     @PostMapping("/actualizarAutor")
     public String actualizarAutor(@ModelAttribute("autor") Autores autor) {
-        autoresService.guardarAutor(autor);
+        autoresFacade.guardarAutor(autor);
         return "redirect:/autores";
     }
 }

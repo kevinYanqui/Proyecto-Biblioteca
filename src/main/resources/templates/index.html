@@ -36,7 +36,12 @@
         <div class="row">
             <div class="col-md-8">
                 <p th:if="${isLoggedIn}">
-                    <a href="/logout">Cerrar sesión</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span th:text="${username}">Usuario</span> <span class="caret"></span>
+                    </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/logout">Cerrar sesión</a></li>
+                </ul>
                 </p>
                 <p th:if="${!isLoggedIn}">
                     <a href="/login">Login</a>
@@ -44,12 +49,13 @@
             </div>
             <div class="col-md-4">
                 <p class="right" th:if="${!isLoggedIn}">
-                    <a href="/registro/usuario">Registrate</a> <span class="glyphicon glyphicon-user"></span>
+                    <a href="/registro/usuario">Regístrate</a> <span class="glyphicon glyphicon-user"></span>
                 </p>
             </div>
         </div>
     </div>
 </div>
+
 <div id="templatemo_banner_logo" class="container_wapper">
     <div class="container">
         <div class="row">
@@ -163,7 +169,6 @@
                 </div>
             </div>
 
-
             <div class="templatemo_clear">
                 <div class="col-xs-6 event_animate_left" id="prev_event_btn">
                     <p>
@@ -241,7 +246,7 @@
                 <img src="/images/34.jpg" alt="Blog Post 2" class="img-responsive" />
             </div>
             <div class="col-sm-8 blog_text event_animate_right">
-                <h1>Libros onlinne</h1>
+                <h1>Libros online</h1>
                 <p>
                     <span class="glyphicon glyphicon-user"></span> posted by &nbsp;&nbsp;
                     <span class="glyphicon glyphicon-calendar"></span> 12<sup>th</sup> July 2014 &nbsp;&nbsp;

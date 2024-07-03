@@ -1,6 +1,6 @@
 package com.Proyecto.Biblioteca.presentation.controller;
 
-import com.Proyecto.Biblioteca.business.service.CategoriaService;
+import com.Proyecto.Biblioteca.business.facade.CategoriaFacade;
 import com.Proyecto.Biblioteca.domain.model.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,11 +18,11 @@ import java.util.List;
 public class CategoriaController {
 
     @Autowired
-    private CategoriaService categoriaService;
+    private CategoriaFacade categoriaFacade;
 
     @GetMapping("/categorias")
     public String listarCategorias(Model model) {
-        List<Categoria> categorias = categoriaService.obtenerTodasLasCategorias();
+        List<Categoria> categorias = categoriaFacade.obtenerTodasLasCategorias();
         model.addAttribute("categorias", categorias);
         String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         model.addAttribute("username", username);
@@ -31,7 +31,7 @@ public class CategoriaController {
 
     @GetMapping("/cambiarEstadoCategoria")
     public String cambiarEstadoCategoria(@RequestParam("id") String id, @RequestParam("estado") String estado) {
-        categoriaService.cambiarEstadoCategoria(id, estado);
+        categoriaFacade.cambiarEstadoCategoria(id, estado);
         return "redirect:/categorias";
     }
 
@@ -44,20 +44,20 @@ public class CategoriaController {
 
     @PostMapping("/guardarNuevaCategoria")
     public String guardarNuevaCategoria(@ModelAttribute("categoria") Categoria categoria) {
-        categoriaService.guardarCategoria(categoria);
+        categoriaFacade.guardarCategoria(categoria);
         return "redirect:/categorias";
     }
 
     @GetMapping("/editarCategoria")
     public String mostrarFormularioEditarCategoria(@RequestParam("id") String id, Model model) {
-        Categoria categoria = categoriaService.obtenerCategoriaPorId(id);
+        Categoria categoria = categoriaFacade.obtenerCategoriaPorId(id);
         model.addAttribute("categoria", categoria);
         return "fEditarCategoria";
     }
 
     @PostMapping("/actualizarCategoria")
     public String actualizarCategoria(@ModelAttribute("categoria") Categoria categoria) {
-        categoriaService.guardarCategoria(categoria);
+        categoriaFacade.guardarCategoria(categoria);
         return "redirect:/categorias";
     }
 }

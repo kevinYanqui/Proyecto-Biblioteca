@@ -48,6 +48,9 @@ public class LoginController {
     public String index(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         boolean isLoggedIn = auth != null && auth.isAuthenticated() && !auth.getName().equals("anonymousUser");
+        if (isLoggedIn) {
+            model.addAttribute("username", auth.getName());
+        }
         model.addAttribute("isLoggedIn", isLoggedIn);
         return "index";
     }

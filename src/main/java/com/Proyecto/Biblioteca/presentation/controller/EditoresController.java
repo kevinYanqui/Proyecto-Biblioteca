@@ -1,6 +1,6 @@
 package com.Proyecto.Biblioteca.presentation.controller;
 
-import com.Proyecto.Biblioteca.business.service.EditoresService;
+import com.Proyecto.Biblioteca.business.facade.EditoresFacade;
 import com.Proyecto.Biblioteca.domain.model.Editores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,11 +17,11 @@ import java.util.List;
 @Controller
 public class EditoresController {
     @Autowired
-    private EditoresService editoresService;
+    private EditoresFacade editoresFacade;
 
     @GetMapping("/editores")
     public String listarEditores(Model model) {
-        List<Editores> editores = editoresService.obtenerTodosLosEditores();
+        List<Editores> editores = editoresFacade.obtenerTodosLosEditores();
         model.addAttribute("editores", editores);
         String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         model.addAttribute("username", username);
@@ -30,7 +30,7 @@ public class EditoresController {
 
     @GetMapping("/cambiarEstadoEditor")
     public String cambiarEstadoEditor(@RequestParam("id") String id, @RequestParam("estado") String estado) {
-        editoresService.cambiarEstadoEditores(id, estado);
+        editoresFacade.cambiarEstadoEditores(id, estado);
         return "redirect:/editores";
     }
 
@@ -43,20 +43,20 @@ public class EditoresController {
 
     @PostMapping("/guardarNuevoEditor")
     public String guardarNuevoEditor(@ModelAttribute("editor") Editores editor) {
-        editoresService.guardarEditores(editor);
+        editoresFacade.guardarEditores(editor);
         return "redirect:/editores";
     }
 
     @GetMapping("/editarEditor")
     public String mostrarFormularioEditarEditor(@RequestParam("id") String id, Model model) {
-        Editores editor = editoresService.obtenerEditoresPorId(id);
+        Editores editor = editoresFacade.obtenerEditoresPorId(id);
         model.addAttribute("editor", editor);
         return "fEditarEditores";
     }
 
     @PostMapping("/actualizarEditor")
     public String actualizarEditor(@ModelAttribute("editor") Editores editor) {
-        editoresService.guardarEditores(editor);
+        editoresFacade.guardarEditores(editor);
         return "redirect:/editores";
     }
 }
