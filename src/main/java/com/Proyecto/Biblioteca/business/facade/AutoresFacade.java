@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AutoresFacade {
     List<Autores> obtenerTodosLosAutores();
-    void cambiarEstadoAutor(String id, String estado);
-    Autores obtenerAutorPorId(String id);
+    void cambiarEstadoAutor(Long id, String estado);
+    Autores obtenerAutorPorId(Long id);
     void guardarAutor(Autores autor);
 }

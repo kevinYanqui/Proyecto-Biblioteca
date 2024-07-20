@@ -50,5 +50,4 @@ public class Categoria {
     public void setEstadoCat(String estadoCat) {
         this.estadoCat = estadoCat;
     }
-
 }

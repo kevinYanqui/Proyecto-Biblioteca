@@ -20,12 +20,12 @@ public class AutoresFacadeImpl implements AutoresFacade {
     }
 
     @Override
-    public void cambiarEstadoAutor(String id, String estado) {
+    public void cambiarEstadoAutor(Long id, String estado) {
         autoresService.cambiarEstadoAutor(id, estado);
     }
 
     @Override
-    public Autores obtenerAutorPorId(String id) {
+    public Autores obtenerAutorPorId(Long id) {
         return autoresService.obtenerAutorPorId(id);
     }
 

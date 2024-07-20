@@ -5,23 +5,23 @@ import com.Proyecto.Biblioteca.domain.model.Prestamo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class PrestamosController {
     @Autowired
     private PrestamosService prestamosService;
 
-    @GetMapping("/prestamosUsu")
-    public String empleado(Model model) {
-        List<Prestamo> prestamos = prestamosService.obtenerTodosLosPrestamos();
-        model.addAttribute("prestamos", prestamos);
-        String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        model.addAttribute("username", username);
-        return "prestamos";
+    @GetMapping("/api/prestamos")
+    public List<Prestamo> obtenerTodosLosPrestamos() {
+        return prestamosService.obtenerTodosLosPrestamos();
+    }
+
+    @GetMapping("/api/username")
+    public String obtenerUsername() {
+        return ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
     }
 }

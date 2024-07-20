@@ -9,18 +9,19 @@ import com.Proyecto.Biblioteca.persistence.repository.HistorialReservaRepository
 import com.Proyecto.Biblioteca.persistence.repository.PrestamoRepository;
 import com.Proyecto.Biblioteca.persistence.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Controller
+@RestController
+@RequestMapping("/api/reservas")
 public class ReservasController {
 
     @Autowired
@@ -36,44 +37,57 @@ public class ReservasController {
     private PrestamoRepository prestamoRepository;
 
     @PostMapping("/reservarLibro")
-    public String reservarLibro(@RequestParam Long id, Principal principal) {
-        Libros libro = librosService.obtenerLibroPorId(id);
-        Reserva reserva = new Reserva();
-        reserva.setLibro(libro);
-        reserva.setUsuario(principal.getName());
-        reserva.setAutor(libro.getCodigoAut().getNombresAut());
-        reserva.setFechaReserva(LocalDateTime.now());
-        reservaRepository.save(reserva);
-        return "redirect:/reservas";
+    public ResponseEntity<Map<String, Object>> reservarLibro(@RequestBody Map<String, Object> request) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            List<Long> ids = (List<Long>) request.get("reservas");
+            String username = (String) request.get("username");
+
+            for (Long id : ids) {
+                Libros libro = librosService.obtenerLibroPorId(id);
+                Reserva reserva = new Reserva();
+                reserva.setLibro(libro);
+                reserva.setUsuario(username);
+                reserva.setAutor(libro.getCodigoAut().getNombresAut());
+                reserva.setFechaReserva(LocalDateTime.now());
+                reservaRepository.save(reserva);
+            }
+
+            response.put("success", true);
+            response.put("message", "Libros reservados exitosamente");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 
-    @GetMapping("/reservas")
-    public String verReservas(Model model, Principal principal) {
-        List<Reserva> reservas = reservaRepository.findByUsuario(principal.getName());
-        model.addAttribute("reservas", reservas);
-        return "reservas";
+    @GetMapping
+    public ResponseEntity<List<Reserva>> verReservas() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        List<Reserva> reservas = reservaRepository.findByUsuario(username);
+        return ResponseEntity.ok(reservas);
     }
 
-    @PostMapping("/cancelarReserva")
-    public String cancelarReserva(@RequestParam Long id) {
+    @DeleteMapping("/cancelarReserva")
+    public ResponseEntity<Void> cancelarReserva(@RequestParam Long id) {
         reservaRepository.deleteById(id);
-        return "redirect:/reservas";
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/completarReserva")
-    public String completarReserva(RedirectAttributes redirectAttributes, Principal principal) {
-        List<Reserva> reservas = reservaRepository.findByUsuario(principal.getName());
+    public ResponseEntity<Void> completarReserva() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        List<Reserva> reservas = reservaRepository.findByUsuario(username);
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime fechaDevolucion = now.plusWeeks(2); // Suponiendo que la devolución es en 2 semanas
+        LocalDateTime fechaDevolucion = now.plusWeeks(2);
 
         for (Reserva reserva : reservas) {
-            HistorialReserva historialReserva = new HistorialReserva();
-            historialReserva.setLibro(reserva.getLibro());
-            historialReserva.setUsuario(reserva.getUsuario());
-            historialReserva.setAutor(reserva.getAutor());
-            historialReserva.setFechaReserva(reserva.getFechaReserva());
-            historialReservaRepository.save(historialReserva);
-
             Prestamo prestamo = new Prestamo();
             prestamo.setLibro(reserva.getLibro());
             prestamo.setUsuario(reserva.getUsuario());
@@ -84,15 +98,15 @@ public class ReservasController {
         }
 
         reservaRepository.deleteAll(reservas);
-
-        redirectAttributes.addFlashAttribute("mensaje", "Reserva realizada con éxito");
-        return "redirect:/reservas";
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/historial")
-    public String verHistorial(Model model, Principal principal) {
-        List<HistorialReserva> historial = historialReservaRepository.findByUsuario(principal.getName());
-        model.addAttribute("reservas", historial);
-        return "historial";
+    public ResponseEntity<List<HistorialReserva>> verHistorial() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        List<HistorialReserva> historial = historialReservaRepository.findByUsuario(username);
+        return ResponseEntity.ok(historial);
     }
 }

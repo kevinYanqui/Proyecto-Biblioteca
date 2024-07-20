@@ -11,7 +11,7 @@ public class Reserva {
     @Column(name = "id_reserva", nullable = false)
     private Long idReserva;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_lib", nullable = false)
     private Libros libro;
 

@@ -11,7 +11,7 @@ public class Prestamo {
     @Column(name = "id_prestamo", nullable = false)
     private Long idPrestamo;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_lib", nullable = false)
     private Libros libro;
 

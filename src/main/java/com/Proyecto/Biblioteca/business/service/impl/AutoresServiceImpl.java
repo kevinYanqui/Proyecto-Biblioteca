@@ -20,7 +20,7 @@ public class AutoresServiceImpl implements AutoresService {
     }
 
     @Override
-    public void cambiarEstadoAutor(String id, String estado) {
+    public void cambiarEstadoAutor(Long id, String estado) {
         Autores autor = autoresRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Autor no encontrado"));
         autor.setEstadoAut(estado);
@@ -28,7 +28,7 @@ public class AutoresServiceImpl implements AutoresService {
     }
 
     @Override
-    public Autores obtenerAutorPorId(String id) {
+    public Autores obtenerAutorPorId(Long id) {
         return autoresRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Autor no encontrado"));
     }

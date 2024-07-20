@@ -11,7 +11,7 @@ public class HistorialReserva {
     @Column(name = "id_historial", nullable = false)
     private Long idHistorial;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_lib", nullable = false)
     private Libros libro;
 

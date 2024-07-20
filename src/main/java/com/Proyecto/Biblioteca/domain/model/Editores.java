@@ -50,5 +50,4 @@ public class Editores {
     public void setEstadoEdi(String estadoEdi) {
         this.estadoEdi = estadoEdi;
     }
-
 }

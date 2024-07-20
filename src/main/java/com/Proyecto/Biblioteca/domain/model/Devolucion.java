@@ -12,14 +12,14 @@ public class Devolucion {
     private Long codigoPre;
 
     @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumn(name = "codigo_pre", nullable = false)
     private Prestamo prestamo;
 
     @Column(name = "codigo_dev", nullable = false, length = 6)
     private Long codigoDev;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_usu_emp", nullable = false)
     private Usuario codigoUsuEmp;
 

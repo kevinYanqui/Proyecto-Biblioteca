@@ -10,15 +10,15 @@ public class Libros {
     @Column(name = "codigo_lib", nullable = false, length = 6)
     private Long codigoLib;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_aut", nullable = false)
     private Autores codigoAut;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_edi", nullable = false)
     private Editores codigoEdi;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_gen", nullable = false)
     private Categoria codigoGen;
 

@@ -50,5 +50,4 @@ public class Autores {
     public void setEstadoAut(String estadoAut) {
         this.estadoAut = estadoAut;
     }
-
 }

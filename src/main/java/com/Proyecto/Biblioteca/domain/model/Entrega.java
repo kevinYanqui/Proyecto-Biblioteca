@@ -12,11 +12,11 @@ public class Entrega {
     @Column(name = "codigo_ent", nullable = false, length = 6)
     private Long codigoEnt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_pre", nullable = false)
     private Prestamo codigoPre;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "codigo_usu_emp", nullable = false)
     private Usuario codigoUsuEmp;
 
